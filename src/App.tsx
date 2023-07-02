@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { SquareState, setSquare } from './reducers/BoardData';
+import { setHeadStartingSquare } from './utils/GameLogic';
 
 import ScoreBoard from './components/ScoreBoard';
 import Board from './components/Board';
@@ -11,7 +12,7 @@ function App() {
 
 	function handleClick() {
 		console.log(board);
-		dispatch(setSquare(SquareState.FOOD, [0, 0]));
+		setHeadStartingSquare(10);
 	}
 
 	return (

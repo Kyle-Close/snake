@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import Square from './Square';
 
@@ -7,11 +8,12 @@ interface BoardProps {
 }
 
 function Board({ size }: BoardProps) {
+	const board = useSelector((state) => state);
 	function createBoard() {
 		const boardContainer: any = [];
 		for (let i = 0; i < size; i++) {
 			for (let j = 0; j < size; j++) {
-				boardContainer.push(<Square />);
+				boardContainer.push(<Square type={board[i][j]} />);
 			}
 		}
 		return boardContainer;

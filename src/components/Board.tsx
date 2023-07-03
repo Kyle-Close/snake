@@ -4,18 +4,14 @@ import { useSelector } from 'react-redux';
 import Square from './Square';
 import { RootState } from '../reducers';
 
-interface BoardProps {
-	size: number;
-}
-
-function Board({ size }: BoardProps) {
+function Board() {
 	const { squaresArray } = useSelector((state: RootState) => state.BoardData);
-	console.log(squaresArray);
+
 	function createBoard() {
 		const boardContainer: any = [];
-		for (let i = 0; i < size; i++) {
-			for (let j = 0; j < size; j++) {
-				boardContainer.push(<Square />);
+		for (let i = 0; i < squaresArray.length; i++) {
+			for (let j = 0; j < squaresArray.length; j++) {
+				boardContainer.push(<Square squareState={squaresArray[i][j]} />);
 			}
 		}
 		return boardContainer;
@@ -25,8 +21,8 @@ function Board({ size }: BoardProps) {
 		display: 'grid',
 		gap: '1px',
 		backgroundColor: 'black',
-		gridTemplateColumns: `repeat(${size}, minmax(0, 1fr))`,
-		gridTemplateRows: `repeat(${size},  minmax(0, 1fr))`,
+		gridTemplateColumns: `repeat(${squaresArray.length}, minmax(0, 1fr))`,
+		gridTemplateRows: `repeat(${squaresArray.length},  minmax(0, 1fr))`,
 		width: '320px',
 		height: '320px',
 		border: 'black 1px solid',

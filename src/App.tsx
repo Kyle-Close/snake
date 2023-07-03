@@ -24,7 +24,7 @@ function App() {
 				Simulate Start Game
 			</button>
 			<ScoreBoard />
-			<Board size={10} />
+			<Board />
 		</div>
 	);
 }

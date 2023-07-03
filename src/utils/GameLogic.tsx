@@ -12,3 +12,5 @@ export function setHeadStartingSquare(gridSize: number) {
 		})
 	);
 }
+
+export function setInitialSnakeBodySquares() {}

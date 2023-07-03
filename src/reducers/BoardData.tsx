@@ -7,15 +7,7 @@ export enum SquareState {
 	BODY = 'BODY',
 }
 
-export enum Direction {
-	NORTH = 'NORTH',
-	EAST = 'EAST',
-	SOUTH = 'SOUTH',
-	WEST = 'WEST',
-}
-
 const initialState = {
-	direction: getRandomDirection(),
 	squaresArray: initializeBoard(10),
 };
 
@@ -46,11 +38,4 @@ function initializeBoard(boardSize: number): SquareState[][] {
 		emptyBoard[i] = new Array(boardSize).fill(SquareState.EMPTY);
 	}
 	return emptyBoard;
-}
-
-function getRandomDirection() {
-	const directions = Object.values(Direction);
-	const randomDirection =
-		directions[Math.floor(Math.random() * directions.length)];
-	return randomDirection;
 }

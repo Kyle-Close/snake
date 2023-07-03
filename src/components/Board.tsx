@@ -9,9 +9,14 @@ function Board() {
 
 	function createBoard() {
 		const boardContainer: any = [];
-		for (let i = 0; i < squaresArray.length; i++) {
-			for (let j = 0; j < squaresArray.length; j++) {
-				boardContainer.push(<Square squareState={squaresArray[i][j]} />);
+		for (let y = 0; y < squaresArray.length; y++) {
+			for (let x = 0; x < squaresArray.length; x++) {
+				boardContainer.push(
+					<Square
+						key={`${x}-${y}`}
+						squareState={squaresArray[x][y]}
+					/>
+				);
 			}
 		}
 		return boardContainer;

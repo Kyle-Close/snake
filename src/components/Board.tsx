@@ -2,13 +2,15 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import Square from './Square';
+import { RootState } from '../reducers';
 
 interface BoardProps {
 	size: number;
 }
 
 function Board({ size }: BoardProps) {
-	const board = useSelector((state) => state);
+	const { squaresArray } = useSelector((state: RootState) => state.BoardData);
+	console.log(squaresArray);
 	function createBoard() {
 		const boardContainer: any = [];
 		for (let i = 0; i < size; i++) {

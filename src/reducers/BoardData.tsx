@@ -1,3 +1,5 @@
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+
 export enum SquareState {
 	EMPTY = 'EMPTY',
 	FOOD = 'FOOD',
@@ -5,32 +7,35 @@ export enum SquareState {
 	BODY = 'BODY',
 }
 
+const initialState = {
+	squaresArray: initializeBoard(10),
+};
+
+const BoardSlice = createSlice({
+	name: 'boardData',
+	initialState,
+	reducers: {
+		setSquare(
+			state,
+			action: PayloadAction<{
+				state: SquareState;
+				coordinates: [number, number];
+			}>
+		) {
+			const [x, y] = action.payload.coordinates;
+			state.squaresArray[x][y] = action.payload.state;
+		},
+	},
+});
+
+export default BoardSlice.reducer;
+export const { setSquare } = BoardSlice.actions;
+
+// Helper - Util functions
 function initializeBoard(boardSize: number): SquareState[][] {
 	const emptyBoard = new Array(boardSize);
 	for (let i = 0; i < boardSize; i++) {
 		emptyBoard[i] = new Array(boardSize).fill(SquareState.EMPTY);
 	}
 	return emptyBoard;
-}
-
-export function setSquare(state: SquareState, coordinates: [number, number]) {
-	return {
-		type: 'SET_SQUARE',
-		payload: { state, coordinates },
-	};
-}
-
-export default function BoardData(
-	state = initializeBoard(10),
-	action: { type: string; payload: any }
-) {
-	switch (action.type) {
-		case 'SET_SQUARE':
-			const newBoard = state.map((arr) => [...arr]);
-			const [x, y] = action.payload.coordinates;
-			newBoard[x][y] = action.payload.state;
-			return newBoard;
-		default:
-			return state;
-	}
 }

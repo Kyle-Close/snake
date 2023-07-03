@@ -13,7 +13,7 @@ function Board({ size }: BoardProps) {
 		const boardContainer: any = [];
 		for (let i = 0; i < size; i++) {
 			for (let j = 0; j < size; j++) {
-				boardContainer.push(<Square type={board[i][j]} />);
+				boardContainer.push(<Square />);
 			}
 		}
 		return boardContainer;

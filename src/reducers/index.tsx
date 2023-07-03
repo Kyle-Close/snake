@@ -1,9 +1,11 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
-import BoardData from './BoardData';
+import BoardDataReducer from './BoardData';
 
 const rootReducer = combineReducers({
-	BoardData,
+	BoardData: BoardDataReducer,
 });
+
+export type RootState = ReturnType<typeof rootReducer>;
 
 export default configureStore({ reducer: rootReducer });

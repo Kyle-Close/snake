@@ -5,5 +5,10 @@ import { setSquare, SquareState } from '../reducers/BoardData';
 export function setHeadStartingSquare(gridSize: number) {
 	console.log('SetHeadStartingSquare called...');
 	const center = Math.floor(gridSize / 2);
-	store.dispatch(setSquare(SquareState.HEAD, [center, center]));
+	store.dispatch(
+		setSquare({
+			state: SquareState.HEAD,
+			coordinates: [center, center],
+		})
+	);
 }

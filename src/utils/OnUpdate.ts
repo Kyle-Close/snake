@@ -4,6 +4,7 @@ import { growSnake, moveSnakeOnUpdate } from '../reducers/Snake';
 import { SquareState, resetBoard, setSquare } from '../reducers/BoardData';
 import { BOARD_SIZE } from '../reducers/BoardData';
 import { setFoodCoordinates } from '../reducers/Food';
+import { GameState, setGameState } from '../reducers/GameState';
 
 export function update() {
 	const state = store.getState();
@@ -11,10 +12,14 @@ export function update() {
 
 	// Check if snake head hit wall
 	if (isSnakeOutOfBounds()) {
+		handleGameOver();
+		return;
 		throw new Error('Snake went out of bounds');
 	}
 	// Check if snake ate itself
 	if (isSnakeOnSelf()) {
+		handleGameOver();
+		return;
 		throw new Error('Snake ate itself!');
 	}
 	// Check if snake ate food
@@ -27,6 +32,15 @@ export function update() {
 
 	// Update the BoardData state so we can see the snake on the board
 	updateBoard();
+}
+
+function handleGameOver() {
+	const state = store.getState();
+	const intervalId = state.GameState.intervalId;
+	// Disable the interval (update)
+	clearInterval(intervalId);
+	// Change the game state
+	store.dispatch(setGameState(GameState.MENU));
 }
 
 function isSnakeOutOfBounds(): boolean {

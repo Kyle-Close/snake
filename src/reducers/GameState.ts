@@ -2,19 +2,32 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { getRandomCoordinates } from '../utils/GameLogic';
 
-const initialState: { coordinates: [number, number] } = {
-	coordinates: getRandomCoordinates(0, BOARD_SIZE - 1),
+export enum GameState {
+	PLAYING = 'PLAYING',
+	MENU = 'MENU',
+}
+interface GameStateSliceState {
+	gameState: GameState;
+	intervalId: any;
+}
+
+const initialState: GameStateSliceState = {
+	gameState: GameState.MENU,
+	intervalId: null,
 };
 
-const FoodSlice = createSlice({
-	name: 'food',
+const GameStateSlice = createSlice({
+	name: 'gameState',
 	initialState,
 	reducers: {
-		setFoodCoordinates(state, action: PayloadAction<[number, number]>) {
-			state.coordinates = action.payload;
+		setGameState(state, action: PayloadAction<GameState>) {
+			state.gameState = action.payload;
+		},
+		setIntervalId(state, action: PayloadAction<any>) {
+			state.intervalId = action.payload;
 		},
 	},
 });
 
-export default FoodSlice.reducer;
-export const { setFoodCoordinates } = FoodSlice.actions;
+export default GameStateSlice.reducer;
+export const { setGameState, setIntervalId } = GameStateSlice.actions;

@@ -131,5 +131,5 @@ export function handleStartGame() {
 	setupSnake([x, y], snakeBody);
 
 	store.dispatch(setGameState(GameState.PLAYING));
-	store.dispatch(setIntervalId(window.setInterval(update, 300)));
+	store.dispatch(setIntervalId(window.setInterval(update, 230)));
 }

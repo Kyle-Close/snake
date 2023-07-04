@@ -22,11 +22,11 @@ function App() {
 	}, []);
 
 	return gameState === GameState.MENU ? (
-		<div>
+		<div className='w-screen h-screen bg-game-pattern-tall bg-no-repeat bg-cover'>
 			{' '}
 			<button
 				onClick={handleClick}
-				className='bg-blue-400 border-black py-2 px-4 rounded-full'
+				className='bg-blue-500 border-black py-2 px-4 rounded'
 			>
 				Simulate Start Game
 			</button>
@@ -35,7 +35,7 @@ function App() {
 		<div className='h-screen w-screen flex flex-col items-center justify-center gap-4 px-8'>
 			<button
 				onClick={handleClick}
-				className='bg-blue-400 border-black py-2 px-4 rounded-full'
+				className='bg-blue-500 border-black py-2 px-4 rounded'
 			>
 				Simulate Start Game
 			</button>

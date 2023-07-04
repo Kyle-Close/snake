@@ -7,7 +7,9 @@ export function update() {
 	// Check if snake head hit wall
 
 	// Check if snake ate food
-
+	if (isSnakeOnFood()) {
+		console.log('NomNomNom');
+	}
 	// Update snakes position based on next positions
 	updateSnakePosition();
 	// Update the BoardData state so we can see the snake on the board
@@ -26,6 +28,25 @@ export function getNextHeadCoordinates(
 	return [x, y];
 }
 
+function isSnakeOnFood() {
+	const state = store.getState();
+	const foodCoordinates = state.Food.coordinates;
+	const nextSnakeHeadCoordinates = state.Snake.snake[0].next;
+
+	if (isArraysEqual(foodCoordinates, nextSnakeHeadCoordinates)) return true;
+	else return false;
+}
+
+function isArraysEqual(a: [number, number], b: [number, number]): boolean {
+	if (a.length !== b.length) return false;
+
+	for (let i = 0; i < a.length; i++) {
+		if (a[i] !== b[i]) return false;
+	}
+
+	return true;
+}
+
 function updateSnakePosition() {
 	const state = store.getState();
 	const direction = state.Direction.direction;
@@ -36,11 +57,17 @@ function updateSnakePosition() {
 function updateBoard() {
 	const state = store.getState();
 	const snakeList = state.Snake.snake;
+	const foodCoords = state.Food.coordinates;
 
 	// Clear board
 	store.dispatch(resetBoard());
 	// Place food
-
+	store.dispatch(
+		setSquare({
+			state: SquareState.FOOD,
+			coordinates: foodCoords,
+		})
+	);
 	// Place snake head
 	store.dispatch(
 		setSquare({

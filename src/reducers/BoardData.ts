@@ -7,7 +7,7 @@ export enum SquareState {
 	BODY = 'BODY',
 }
 
-const BOARD_SIZE = 10;
+export const BOARD_SIZE = 10;
 
 const initialState = {
 	squaresArray: initializeBoard(BOARD_SIZE),

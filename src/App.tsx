@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import {
-	setFoodLocation,
 	setHeadStartingSquare,
 	setInitialSnakeBodySquares,
 	setupSnake,
@@ -20,7 +19,6 @@ function App() {
 	function handleClick() {
 		const [x, y] = setHeadStartingSquare(BoardData.squaresArray.length);
 		const snakeBody = setInitialSnakeBodySquares([x, y], direction);
-		setFoodLocation();
 		setupSnake([x, y], snakeBody);
 		window.setInterval(update, 300);
 	}

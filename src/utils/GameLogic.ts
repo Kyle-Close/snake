@@ -102,12 +102,13 @@ export function setInitialSnakeBodySquares(
 	return snakeBody;
 }
 
-export function setFoodLocation() {
-	const randX = getRandomNumberFromInterval(0, 9);
-	const randY = getRandomNumberFromInterval(0, 9);
-	store.dispatch(
-		setSquare({ state: SquareState.FOOD, coordinates: [randX, randY] })
-	);
+export function getRandomCoordinates(
+	min: number,
+	max: number
+): [number, number] {
+	const randX = getRandomNumberFromInterval(0, max);
+	const randY = getRandomNumberFromInterval(0, max);
+	return [randX, randY];
 }
 
 function getRandomNumberFromInterval(min: number, max: number) {

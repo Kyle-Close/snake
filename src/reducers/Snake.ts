@@ -81,6 +81,19 @@ const SnakeSlice = createSlice({
 				}
 			}
 		},
+		growSnake(
+			state,
+			action: PayloadAction<{
+				direction: Direction;
+			}>
+		) {
+			const snake = state.snake;
+            const snakeHead = {
+                current:
+                next:
+            }
+            snake.unshift()
+		},
 	},
 });
 

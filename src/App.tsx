@@ -4,13 +4,14 @@ import {
 	setFoodLocation,
 	setHeadStartingSquare,
 	setInitialSnakeBodySquares,
+	setupSnake,
 } from './utils/GameLogic';
 
 import ScoreBoard from './components/ScoreBoard';
 import Board from './components/Board';
 import { RootState } from './reducers';
 import { handleKeyDown } from './utils/HandleKeyPress';
-import { update } from './utils/GameLogic';
+import { update } from './utils/OnUpdate';
 
 function App() {
 	const { Direction, BoardData } = useSelector((state: RootState) => state);
@@ -18,8 +19,9 @@ function App() {
 
 	function handleClick() {
 		const [x, y] = setHeadStartingSquare(BoardData.squaresArray.length);
-		setInitialSnakeBodySquares([x, y], direction);
+		const snakeBody = setInitialSnakeBodySquares([x, y], direction);
 		setFoodLocation();
+		setupSnake([x,y], snakeBody)
 		window.setInterval(update, 1000);
 	}
 

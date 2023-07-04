@@ -22,7 +22,7 @@ function App() {
 		const snakeBody = setInitialSnakeBodySquares([x, y], direction);
 		setFoodLocation();
 		setupSnake([x, y], snakeBody);
-		window.setInterval(update, 1000);
+		window.setInterval(update, 300);
 	}
 
 	React.useEffect(() => {

@@ -2,13 +2,14 @@ import React from 'react';
 import store from '../reducers';
 
 import { Direction, setDirection } from '../reducers/Direction';
+import { updateSnakeHeadNextCoordinate } from '../reducers/Snake';
 
 export function handleKeyDown(e: any) {
 	if (isKeyValid(e.key)) {
 		// Set direction here
 		const direction = getDirectionFromKey(e.key);
-		console.log('New direction = ', direction);
 		setCurrentDirection(direction);
+		store.dispatch(updateSnakeHeadNextCoordinate({ direction: direction }));
 	}
 }
 

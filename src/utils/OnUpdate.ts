@@ -8,18 +8,53 @@ import { setFoodCoordinates } from '../reducers/Food';
 export function update() {
 	const state = store.getState();
 	const direction = state.Direction.direction;
-	// Check if snake head hit wall
 
+	// Check if snake head hit wall
+	if (isSnakeOutOfBounds()) {
+		throw new Error('Snake went out of bounds');
+	}
+	// Check if snake ate itself
+	if (isSnakeOnSelf()) {
+		throw new Error('Snake ate itself!');
+	}
 	// Check if snake ate food
 	if (isSnakeOnFood()) {
 		handleSnakeAte(direction);
 		return;
 	}
-
 	// Update snakes position based on next positions
 	updateSnakePosition();
+
 	// Update the BoardData state so we can see the snake on the board
 	updateBoard();
+}
+
+function isSnakeOutOfBounds(): boolean {
+	const state = store.getState();
+	const snakeHead = state.Snake.snake[0];
+	const [x, y] = snakeHead.next;
+
+	let isOutOfBounds = false;
+	if (x < 0 || y < 0 || x > BOARD_SIZE - 1 || y > BOARD_SIZE - 1)
+		isOutOfBounds = true;
+
+	return isOutOfBounds;
+}
+
+function isSnakeOnSelf(): boolean {
+	const state = store.getState();
+	const snake = state.Snake.snake;
+	const nextHeadCoords = snake[0].next;
+
+	console.log('nextHeadCoords: ', nextHeadCoords);
+
+	let isSnakeOnSelf = false;
+
+	for (let i = 1; i < snake.length; i++) {
+		if (isArraysEqual(snake[i].current, nextHeadCoords)) isSnakeOnSelf = true;
+	}
+
+	return isSnakeOnSelf;
 }
 
 function handleSnakeAte(direction: Direction) {

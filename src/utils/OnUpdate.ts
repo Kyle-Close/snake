@@ -14,13 +14,11 @@ export function update() {
 	if (isSnakeOutOfBounds()) {
 		handleGameOver();
 		return;
-		throw new Error('Snake went out of bounds');
 	}
 	// Check if snake ate itself
 	if (isSnakeOnSelf()) {
 		handleGameOver();
 		return;
-		throw new Error('Snake ate itself!');
 	}
 	// Check if snake ate food
 	if (isSnakeOnFood()) {

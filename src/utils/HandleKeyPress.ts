@@ -23,6 +23,10 @@ function getDirectionFromKey(key: string): Direction {
 }
 
 function isKeyValid(key: string) {
+	const state = store.getState();
+	const direction = state.Direction.direction;
+
+	let isValid: boolean = true;
 	// Accept WASD & Arrow keys
 	const validKeysArray = [
 		'ARROWUP',
@@ -34,8 +38,23 @@ function isKeyValid(key: string) {
 		'S',
 		'A',
 	];
-	if (validKeysArray.includes(key.toUpperCase())) return true;
-	else return false;
+	if (!validKeysArray.includes(key.toUpperCase())) isValid = false;
+
+	if (direction === Direction.NORTH) {
+		if (key.toUpperCase() === 'ARROWDOWN' || key.toUpperCase() === 'S')
+			isValid = false;
+	} else if (direction === Direction.SOUTH) {
+		if (key.toUpperCase() === 'ARROWUP' || key.toUpperCase() === 'W')
+			isValid = false;
+	} else if (direction === Direction.WEST) {
+		if (key.toUpperCase() === 'ARROWRIGHT' || key.toUpperCase() === 'D')
+			isValid = false;
+	} else if (direction === Direction.EAST) {
+		if (key.toUpperCase() === 'ARROWLEFT' || key.toUpperCase() === 'A')
+			isValid = false;
+	}
+
+	return isValid;
 }
 
 export function setCurrentDirection(direction: Direction) {

@@ -12,19 +12,23 @@ export function update() {
 
 	// Check if snake ate food
 	if (isSnakeOnFood()) {
-		// Grow the snake by 1
-		store.dispatch(growSnake({ direction }));
-		// Get new food
-		const coords = getNewFoodCoords();
-		store.dispatch(setFoodCoordinates(coords));
-		// Clear the board and display again with new snake and new food
-		updateBoard();
+		handleSnakeAte(direction);
 		return;
 	}
-	console.log(state.Snake.snake);
+
 	// Update snakes position based on next positions
 	updateSnakePosition();
 	// Update the BoardData state so we can see the snake on the board
+	updateBoard();
+}
+
+function handleSnakeAte(direction: Direction) {
+	// Grow the snake by 1
+	store.dispatch(growSnake({ direction }));
+	// Get new food
+	const coords = getNewFoodCoords();
+	store.dispatch(setFoodCoordinates(coords));
+	// Clear the board and display again with new snake and new food
 	updateBoard();
 }
 

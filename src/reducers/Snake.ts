@@ -89,7 +89,6 @@ const SnakeSlice = createSlice({
 		) {
 			// Setup new head.
 			const snake = state.snake;
-			console.log('Setting newSnakeHead to: ', snake[0].next);
 			const newSnakeHead = {
 				current: snake[0].next,
 				next: getNextHeadCoordinates(action.payload.direction, snake[0].next),

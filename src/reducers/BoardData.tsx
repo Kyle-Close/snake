@@ -7,8 +7,10 @@ export enum SquareState {
 	BODY = 'BODY',
 }
 
+const BOARD_SIZE = 10;
+
 const initialState = {
-	squaresArray: initializeBoard(10),
+	squaresArray: initializeBoard(BOARD_SIZE),
 };
 
 const BoardSlice = createSlice({
@@ -25,11 +27,14 @@ const BoardSlice = createSlice({
 			const [x, y] = action.payload.coordinates;
 			state.squaresArray[x][y] = action.payload.state;
 		},
+		resetBoard(state) {
+			state.squaresArray = initializeBoard(BOARD_SIZE);
+		},
 	},
 });
 
 export default BoardSlice.reducer;
-export const { setSquare } = BoardSlice.actions;
+export const { setSquare, resetBoard } = BoardSlice.actions;
 
 // Helper - Util functions
 function initializeBoard(boardSize: number): SquareState[][] {

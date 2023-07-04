@@ -21,8 +21,8 @@ function App() {
 		const [x, y] = setHeadStartingSquare(BoardData.squaresArray.length);
 		const snakeBody = setInitialSnakeBodySquares([x, y], direction);
 		setFoodLocation();
-		setupSnake([x,y], snakeBody)
-		window.setInterval(update, 3000);
+		setupSnake([x, y], snakeBody);
+		window.setInterval(update, 1000);
 	}
 
 	React.useEffect(() => {

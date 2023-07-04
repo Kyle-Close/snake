@@ -32,7 +32,7 @@ export function setInitialSnakeBodySquares(
 					coordinates: [x, y + 1],
 				})
 			);
-			
+
 			store.dispatch(
 				setSquare({
 					state: SquareState.BODY,
@@ -40,8 +40,8 @@ export function setInitialSnakeBodySquares(
 				})
 			);
 
-			snakeBody.push([x, y + 1]) // Push first segment coords to array
-			snakeBody.push([x, y + 2]) // Push second segment coords to array
+			snakeBody.push([x, y + 1]); // Push first segment coords to array
+			snakeBody.push([x, y + 2]); // Push second segment coords to array
 
 			break;
 		case Direction.SOUTH:
@@ -58,8 +58,8 @@ export function setInitialSnakeBodySquares(
 				})
 			);
 
-			snakeBody.push([x, y - 1]) // Push first segment coords to array
-			snakeBody.push([x, y - 2]) // Push second segment coords to array
+			snakeBody.push([x, y - 1]); // Push first segment coords to array
+			snakeBody.push([x, y - 2]); // Push second segment coords to array
 
 			break;
 		case Direction.WEST:
@@ -76,8 +76,8 @@ export function setInitialSnakeBodySquares(
 				})
 			);
 
-			snakeBody.push([x + 1, y]) // Push first segment coords to array
-			snakeBody.push([x + 2, y]) // Push second segment coords to array
+			snakeBody.push([x + 1, y]); // Push first segment coords to array
+			snakeBody.push([x + 2, y]); // Push second segment coords to array
 
 			break;
 		case Direction.EAST:
@@ -94,12 +94,12 @@ export function setInitialSnakeBodySquares(
 				})
 			);
 
-			snakeBody.push([x - 1, y]) // Push first segment coords to array
-			snakeBody.push([x - 2, y]) // Push second segment coords to array
+			snakeBody.push([x - 1, y]); // Push first segment coords to array
+			snakeBody.push([x - 2, y]); // Push second segment coords to array
 
 			break;
 	}
-	return snakeBody
+	return snakeBody;
 }
 
 export function setFoodLocation() {
@@ -114,16 +114,20 @@ function getRandomNumberFromInterval(min: number, max: number) {
 	return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-export function setupSnake(headCoordinates: [number, number], bodyCoordinates: [number, number][]){
-	const state = store.getState()
-	const direction = state.Direction.direction
+export function setupSnake(
+	headCoordinates: [number, number],
+	bodyCoordinates: [number, number][]
+) {
+	const state = store.getState();
+	const direction = state.Direction.direction;
 
-	store.dispatch(initSnakeHead({
-		direction, 
-		headCoordinates, 
-	}))
+	store.dispatch(
+		initSnakeHead({
+			direction,
+			headCoordinates,
+		})
+	);
 
-	store.dispatch(addSnakeBodySegment({bodyCoordinates: bodyCoordinates[0]}))
-	store.dispatch(addSnakeBodySegment({bodyCoordinates: bodyCoordinates[1]}))
-
+	store.dispatch(addSnakeBodySegment({ bodyCoordinates: bodyCoordinates[0] }));
+	store.dispatch(addSnakeBodySegment({ bodyCoordinates: bodyCoordinates[1] }));
 }

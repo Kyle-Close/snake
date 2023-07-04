@@ -87,12 +87,13 @@ const SnakeSlice = createSlice({
 				direction: Direction;
 			}>
 		) {
+			// Setup new head. Then alter old head
 			const snake = state.snake;
-            const snakeHead = {
-                current:
-                next:
-            }
-            snake.unshift()
+			const newSnakeHead = {
+				current: snake[0].next,
+				next: getNextHeadCoordinates(action.payload.direction, snake[0].next),
+			};
+			snake.unshift();
 		},
 	},
 });

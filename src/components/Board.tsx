@@ -5,7 +5,9 @@ import Square from './Square';
 import { RootState } from '../reducers';
 
 function Board() {
-	const { squaresArray } = useSelector((state: RootState) => state.BoardData);
+	const squaresArray = useSelector(
+		(state: RootState) => state.BoardData.squaresArray
+	);
 
 	function createBoard() {
 		const boardContainer: any = [];

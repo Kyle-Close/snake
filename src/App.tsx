@@ -18,8 +18,10 @@ import { GameState, setGameState, setIntervalId } from './reducers/GameState';
 
 function App() {
 	const { gameState } = useSelector((state: any) => state.GameState);
-	const { Direction, BoardData } = useSelector((state: RootState) => state);
-	const { direction } = Direction;
+	const direction = useSelector(
+		(state: RootState) => state.Direction.direction
+	);
+	const BoardData = useSelector((state: RootState) => state.BoardData);
 
 	function handleClick() {
 		const [x, y] = setHeadStartingSquare(BoardData.squaresArray.length);

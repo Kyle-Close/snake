@@ -1,9 +1,26 @@
 import store from '../reducers';
 
-import { setSquare, SquareState } from '../reducers/BoardData';
-import { Direction, setDirection } from '../reducers/Direction';
-
 import { addSnakeBodySegment, initSnakeHead } from '../reducers/Snake';
+import { setSquare, SquareState } from '../reducers/BoardData';
+import { Direction } from '../reducers/Direction';
+
+export function setupSnake(
+	headCoordinates: [number, number],
+	bodyCoordinates: [number, number][]
+) {
+	const state = store.getState();
+	const direction = state.Direction.direction;
+
+	store.dispatch(
+		initSnakeHead({
+			direction,
+			headCoordinates,
+		})
+	);
+
+	store.dispatch(addSnakeBodySegment({ bodyCoordinates: bodyCoordinates[0] }));
+	store.dispatch(addSnakeBodySegment({ bodyCoordinates: bodyCoordinates[1] }));
+}
 
 export function setHeadStartingSquare(gridSize: number) {
 	const center = Math.floor(gridSize / 2);
@@ -100,35 +117,4 @@ export function setInitialSnakeBodySquares(
 			break;
 	}
 	return snakeBody;
-}
-
-export function getRandomCoordinates(
-	min: number,
-	max: number
-): [number, number] {
-	const randX = getRandomNumberFromInterval(0, max);
-	const randY = getRandomNumberFromInterval(0, max);
-	return [randX, randY];
-}
-
-function getRandomNumberFromInterval(min: number, max: number) {
-	return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-export function setupSnake(
-	headCoordinates: [number, number],
-	bodyCoordinates: [number, number][]
-) {
-	const state = store.getState();
-	const direction = state.Direction.direction;
-
-	store.dispatch(
-		initSnakeHead({
-			direction,
-			headCoordinates,
-		})
-	);
-
-	store.dispatch(addSnakeBodySegment({ bodyCoordinates: bodyCoordinates[0] }));
-	store.dispatch(addSnakeBodySegment({ bodyCoordinates: bodyCoordinates[1] }));
 }

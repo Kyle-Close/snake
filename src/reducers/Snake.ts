@@ -1,6 +1,7 @@
-import { PayloadAction, createSlice, current } from '@reduxjs/toolkit';
-import { getNextHeadCoordinates } from '../utils/OnUpdate';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+
 import { Direction } from './Direction';
+import { getNextHeadCoordinates } from '../utils/SnakeLogic';
 
 interface SnakeSegment {
 	current: [number, number];

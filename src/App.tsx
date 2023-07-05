@@ -1,10 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+
 import {
+	setupSnake,
 	setHeadStartingSquare,
 	setInitialSnakeBodySquares,
-	setupSnake,
-} from './utils/GameLogic';
+} from './utils/InitGame';
 
 import ScoreBoard from './components/ScoreBoard';
 import Board from './components/Board';

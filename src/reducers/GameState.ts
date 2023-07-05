@@ -1,7 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { getRandomCoordinates } from '../utils/GameLogic';
-
 export enum GameState {
 	PLAYING = 'PLAYING',
 	MENU = 'MENU',

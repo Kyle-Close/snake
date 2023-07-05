@@ -3,6 +3,8 @@ import store from '../reducers';
 import { addSnakeBodySegment, initSnakeHead } from '../reducers/Snake';
 import { setSquare, SquareState } from '../reducers/BoardData';
 import { Direction } from '../reducers/Direction';
+import { GameState, setGameState, setIntervalId } from '../reducers/GameState';
+import { update } from './OnUpdate';
 
 export function setupSnake(
 	headCoordinates: [number, number],
@@ -117,4 +119,17 @@ export function setInitialSnakeBodySquares(
 			break;
 	}
 	return snakeBody;
+}
+
+export function handleStartGame() {
+	const squaresArray = store.getState().BoardData.squaresArray;
+	const direction = store.getState().Direction.direction;
+
+	const [x, y] = setHeadStartingSquare(squaresArray.length);
+	const snakeBody = setInitialSnakeBodySquares([x, y], direction);
+
+	setupSnake([x, y], snakeBody);
+
+	store.dispatch(setGameState(GameState.PLAYING));
+	store.dispatch(setIntervalId(window.setInterval(update, 300)));
 }

@@ -5,7 +5,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
-.text-border {
-  color: white;
-  -webkit-text-stroke: 1px black;
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }

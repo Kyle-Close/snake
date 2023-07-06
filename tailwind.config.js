@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        background: "url('/src/img/background.jpeg')",
+        background: "url('/src/img/background.png')",
       },
       fontFamily: {
         rubik: ["Rubik", "sans-serif"],

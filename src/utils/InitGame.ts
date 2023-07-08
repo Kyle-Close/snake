@@ -121,7 +121,7 @@ export function setInitialSnakeBodySquares(
   return snakeBody;
 }
 
-export function handleStartGame() {
+export function handleStartGame(difficulty: string) {
   setGameState(GameState.PLAYING);
 
   const squaresArray = store.getState().BoardData.squaresArray;
@@ -133,5 +133,23 @@ export function handleStartGame() {
   setupSnake([x, y], snakeBody);
 
   store.dispatch(setGameState(GameState.PLAYING));
-  store.dispatch(setIntervalId(window.setInterval(update, 230)));
+  store.dispatch(
+    setIntervalId(window.setInterval(update, getIntervalInMs(difficulty)))
+  );
+}
+
+function getIntervalInMs(difficulty: string): number {
+  let interval: number = 230;
+  switch (difficulty.toLowerCase()) {
+    case "easy":
+      interval = 200;
+      break;
+    case "medium":
+      interval = 150;
+      break;
+    case "hard":
+      interval = 100;
+      break;
+  }
+  return interval;
 }

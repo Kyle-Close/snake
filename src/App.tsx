@@ -20,7 +20,7 @@ function App() {
   return gameState === GameState.MENU ? (
     <MainMenu />
   ) : (
-    <div className="h-screen w-screen flex flex-col items-center justify-center gap-4 px-8">
+    <div className="h-screen w-screen flex flex-col items-center justify-center gap-4 px-8 bg-background bg-no-repeat bg-cover font-rubik">
       <ScoreBoard />
       <Board />
     </div>

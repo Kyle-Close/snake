@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      minWidth: {
+        500: "500px",
+      },
       backgroundImage: {
         background: "url('/src/img/background.png')",
       },

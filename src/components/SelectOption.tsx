@@ -4,17 +4,26 @@ interface SelectOptionProps {
   difficultyImage: string;
   titleColor: string;
   titleText: string;
+  index: number;
+  resetSelectors: () => void;
+  setSelectorActive: (index: number) => void;
 }
 
 function SelectOption({
   difficultyImage,
   titleColor,
   titleText,
+  index,
+  resetSelectors,
+  setSelectorActive,
 }: SelectOptionProps) {
   const titleClassNames = `font-bold text-lg ${titleColor}`;
 
   function handleClick(e: React.SyntheticEvent) {
-    console.log(e);
+    // Clear any active selection, if none selected, do nothing
+    resetSelectors();
+    // Set clicked selection as active selection
+    setSelectorActive(index);
   }
 
   return (

@@ -6,8 +6,6 @@ import MenuFooter from "./MenuFooter";
 import SnakeTitleImg from "../img/snake-title.png";
 import InitialActiveSelectors from "../data/difficulties";
 
-import { handleStartGame } from "../utils/InitGame";
-
 function MainMenu() {
   const [difficultyDataArr, setDifficultyDataArr] = React.useState(
     InitialActiveSelectors
@@ -32,18 +30,13 @@ function MainMenu() {
     });
   };
 
-  const isAnySelectorActive: () => boolean = () => {
-    console.log("Running isAnySelectorActive");
-    let isActive = false;
+  const getActiveSelector: () => string = () => {
+    let result = "";
     difficultyDataArr.forEach((difficulty) => {
-      if (difficulty.isSelected) isActive = true;
+      if (difficulty.isSelected) result = difficulty.text;
     });
-    return isActive;
+    return result;
   };
-
-  function handleClick() {
-    handleStartGame();
-  }
 
   return (
     <div className="w-screen h-screen bg-background bg-no-repeat bg-cover font-rubik flex justify-center">
@@ -55,7 +48,7 @@ function MainMenu() {
             resetSelectors={resetSelectors}
             setSelectorActive={setSelectorActive}
           />
-          <PlaySnakeButton isAnyActive={isAnySelectorActive()} />
+          <PlaySnakeButton activeDifficulty={getActiveSelector()} />
           <MenuFooter />
         </div>
       </div>

@@ -5,9 +5,9 @@ import githubImg from "../img/github.png";
 function MenuFooter() {
   return (
     <div className="grow flex gap-3 items-end">
-      <button>
+      <a href="https://github.com/Kyle-Close" target="_blank">
         <img src={githubImg} />
-      </button>
+      </a>
       <p>Created by Kyle Close</p>
     </div>
   );

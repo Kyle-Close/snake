@@ -5,6 +5,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
+@import "@fontsource/roboto/300.css";
+@import "@fontsource/roboto/400.css";
+@import "@fontsource/roboto/500.css";
+@import "@fontsource/roboto/700.css";
+
 .text-shadow {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }

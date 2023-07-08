@@ -5,6 +5,7 @@ import PlaySnakeButton from "./PlaySnakeButton";
 import MenuFooter from "./MenuFooter";
 import SnakeTitleImg from "../img/snake-title.png";
 import InitialActiveSelectors from "../data/difficulties";
+import { Difficulty } from "../reducers/GameState";
 
 function MainMenu() {
   const [difficultyDataArr, setDifficultyDataArr] = React.useState(
@@ -31,10 +32,24 @@ function MainMenu() {
   };
 
   const getActiveSelector: () => string = () => {
-    let result = "";
+    let result: Difficulty = Difficulty.EASY;
     difficultyDataArr.forEach((difficulty) => {
-      if (difficulty.isSelected) result = difficulty.text;
+      if (difficulty.isSelected)
+        result = convertStringDifficulty(difficulty.text);
     });
+    return result;
+  };
+
+  const convertStringDifficulty: (value: string) => Difficulty = (str) => {
+    let result: Difficulty = Difficulty.EASY;
+    switch (str.toLowerCase()) {
+      case "medium":
+        result = Difficulty.MEDIUM;
+        break;
+      case "hard":
+        result = Difficulty.HARD;
+        break;
+    }
     return result;
   };
 

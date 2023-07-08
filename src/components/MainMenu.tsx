@@ -2,11 +2,10 @@ import React from "react";
 
 import DifficultySelector from "./DifficultySelector";
 import PlaySnakeButton from "./PlaySnakeButton";
+import MenuFooter from "./MenuFooter";
+import SnakeTitleImg from "../img/snake-title.png";
 
 import { handleStartGame } from "../utils/InitGame";
-
-import SnakeTitleImg from "../img/snake-title.png";
-import MenuFooter from "./MenuFooter";
 
 function MainMenu() {
   function handleClick() {

@@ -28,7 +28,7 @@ function SelectOption({
 
   return (
     <div className="basis-1/4 shrink-0 flex flex-col items-center gap-4">
-      <div onClick={handleClick}>
+      <div className="hover:cursor-pointer" onClick={handleClick}>
         <img src={difficultyImage} />
       </div>
       <h3 className={titleClassNames}>{titleText}</h3>

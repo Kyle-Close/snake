@@ -3,11 +3,25 @@ import React from "react";
 import SelectOption from "./SelectOption";
 import InitialActiveSelectors from "../data/difficulties";
 
-function DifficultySelector() {
-  const [difficultyDataArr, setDifficultyDataArr] = React.useState(
-    InitialActiveSelectors
-  );
+type DifficultyData = {
+  isSelected: boolean;
+  selectedSrc: string;
+  src: string;
+  color: string;
+  text: string;
+};
 
+interface DifficultySelectorProps {
+  difficultyDataArr: DifficultyData[];
+  resetSelectors: () => void;
+  setSelectorActive: (index: number) => void;
+}
+
+function DifficultySelector({
+  difficultyDataArr,
+  resetSelectors,
+  setSelectorActive,
+}: DifficultySelectorProps) {
   const activeSelectors = () => {
     return difficultyDataArr.map((difficulty, key) => (
       <SelectOption
@@ -22,25 +36,6 @@ function DifficultySelector() {
         setSelectorActive={setSelectorActive}
       />
     ));
-  };
-
-  const resetSelectors: () => void = () => {
-    setDifficultyDataArr((prev) => {
-      const newData = prev;
-      return newData.map((difficulty) => {
-        return { ...difficulty, isSelected: false };
-      });
-    });
-  };
-
-  const setSelectorActive: (index: number) => void = (index) => {
-    console.log(index);
-    setDifficultyDataArr((prev) => {
-      return prev.map((difficulty, i) => {
-        if (i === index) return { ...difficulty, isSelected: true };
-        else return difficulty;
-      });
-    });
   };
 
   return (

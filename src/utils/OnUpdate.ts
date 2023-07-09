@@ -10,14 +10,23 @@ import {
   isSnakeOnFood,
   handleSnakeAte,
   updateSnakePosition,
+  isWin,
 } from "./SnakeLogic";
 
 export function update() {
   const state = store.getState();
   const direction = state.Direction.direction;
 
-  // Check if snake head hit wall
+  // Check for win
+  if (isWin()) {
+    alert(
+      "Didn't expect anyone to actually win... I don't have anything for you but good job ;)"
+    );
+    handleGameOver();
+    return;
+  }
   if (isSnakeOutOfBounds()) {
+    // Check if snake head hit wall
     handleGameOver();
     return;
   }

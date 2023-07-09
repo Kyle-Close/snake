@@ -10,7 +10,6 @@ import StartGameModal from "./components/StartGameModal";
 
 function App() {
   const { gameState } = useSelector((state: any) => state.GameState);
-  const [loadBoard, setLoadBoard] = React.useState(false);
 
   React.useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);

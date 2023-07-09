@@ -9,6 +9,7 @@ export enum Difficulty {
 export enum GameState {
   PLAYING = "PLAYING",
   MENU = "MENU",
+  INSTRUCTIONS = "INSTRUCTIONS",
 }
 interface GameStateSliceState {
   gameState: GameState;

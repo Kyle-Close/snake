@@ -22,7 +22,7 @@ function PlaySnakeButton({ activeDifficulty }: PlaySnakeButtonProps) {
           onClick={() => {
             console.log(activeDifficulty);
             store.dispatch(setDifficulty(activeDifficulty));
-            store.dispatch(setGameState(GameState.PLAYING));
+            store.dispatch(setGameState(GameState.INSTRUCTIONS));
           }}
           className="border-black border-4 px-12 py-4 rounded-lg bg-green-400 disabled:cursor-not-allowed disabled:bg-gray-300 disabled:opacity-50 active:scale-90 transform transition"
         >

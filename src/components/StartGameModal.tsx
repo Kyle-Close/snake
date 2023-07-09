@@ -4,8 +4,10 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { handleStartGame } from "../utils/InitGame";
-import { BOARD_SIZE } from "../reducers/BoardData";
+
 import store from "../reducers";
+import ArrowKeysImg from "../img/Arrow-Keys.svg";
+import wasdKeysImg from "../img/wasd-Keys.png";
 
 const style = {
   position: "absolute",
@@ -13,7 +15,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: "background.paper",
+  bgcolor: "#2C3333",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
@@ -36,12 +38,32 @@ export default function StartGameModal() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography
+            sx={{
+              color: "#CBE4DE",
+            }}
+            align="center"
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+          >
             Controls
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Up down
-          </Typography>
+          {
+            <div className="grid grid-cols-2 justify-self-start">
+              <div className="w-32">
+                <img src={ArrowKeysImg} />
+              </div>
+              <div className="w-32 justify-self-end">
+                <img src={wasdKeysImg} />
+              </div>
+            </div>
+          }
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Button onClick={handleClose} variant="contained">
+              Play
+            </Button>
+          </Box>
         </Box>
       </Modal>
     </div>

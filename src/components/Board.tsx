@@ -29,7 +29,7 @@ function Board() {
     gridTemplateRows: `repeat(${squaresArray.length},  minmax(0, 1fr))`,
     width: "600px",
     height: "600px",
-    border: "black 1px solid",
+    border: "black 3px solid",
   };
 
   return (

@@ -150,10 +150,10 @@ function getIntervalInMs(difficulty: string): number {
       interval = 200;
       break;
     case "medium":
-      interval = 150;
+      interval = 120;
       break;
     case "hard":
-      interval = 100;
+      interval = 80;
       break;
   }
   return interval;
